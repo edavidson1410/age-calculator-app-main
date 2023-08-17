@@ -1,11 +1,18 @@
 import DateInput from "./components/DateInput";
-import Age from "./components/Age"
+import Age from "./components/Age";
+import "./App.css"
 
 function App() {
   return (
     <div className="App">
-      <DateInput />
-      <Age />
+      <div className="container">
+        <div className="top">
+          <DateInput />
+        </div>
+        <div className="bottom">
+          <Age /> 
+        </div>
+      </div>
     </div>
   );
 }

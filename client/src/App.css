@@ -1,0 +1,31 @@
+
+body {
+    margin: 0;
+}
+
+.App {
+    display: flex;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    background-color: lightgray;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 20rem;
+    width: 30rem;
+    border-radius: 5%;
+    border-bottom-right-radius: 30%;
+    background-color: white;
+    justify-content: space-between;
+}
+
+.top {
+    display: flex;
+}
+
+.bottom {
+
+}

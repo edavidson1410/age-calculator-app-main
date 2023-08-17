@@ -1,0 +1,16 @@
+input {
+    width: 5.5rem;
+    height: 2rem;
+    font-weight: 1000;
+}
+
+label {
+    font-size: .7rem;
+}
+
+.inputDate {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem;
+    gap: .45rem;
+}
