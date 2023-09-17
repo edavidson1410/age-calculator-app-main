@@ -1,12 +1,27 @@
-
+import "./Age.css"
 
 const Age = () => {
 
     return(
         <>
-            <div>-- years</div>
-            <div>-- months</div>
-            <div>-- years</div>
+            <div className="age">
+                <div className="ageNum">
+                    --
+                </div>
+                years
+            </div>
+            <div className="age">
+                <div className="ageNum">
+                    --
+                </div>
+                months
+            </div>
+            <div className="age">
+                <div className="ageNum">
+                    --
+                </div>
+                days
+            </div>
         </>
     )
 }

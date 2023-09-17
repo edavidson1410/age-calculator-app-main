@@ -1,16 +1,23 @@
 input {
-    width: 5.5rem;
+    width: 5rem;
     height: 2rem;
+    font-size: 1.15rem;
     font-weight: 1000;
+    padding-left: .4rem;
+    border: 0.01rem solid lightgrey;
+    border-radius: 10%;
 }
 
 label {
-    font-size: .7rem;
+    font-size: .5rem;
+    font-weight: 1000;
+    letter-spacing: 0.1rem;
+        color: grey;
 }
 
 .inputDate {
     display: flex;
     flex-direction: column;
     margin: 1rem;
-    gap: .45rem;
+    gap: 0.10rem;
 }

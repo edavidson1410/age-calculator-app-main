@@ -1,6 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
 body {
     margin: 0;
+    font-family: 'Poppins', sans-serif;
 }
 
 .App {
@@ -15,7 +17,8 @@ body {
     display: flex;
     flex-direction: column;
     height: 20rem;
-    width: 30rem;
+    width: 29rem;
+    padding: 0.75rem;
     border-radius: 5%;
     border-bottom-right-radius: 30%;
     background-color: white;
@@ -27,5 +30,30 @@ body {
 }
 
 .bottom {
+    margin-left: 1.5rem;
+    margin-bottom: 1.5rem;
+}
 
+.submit {
+    display: flex;
+    align-items: center;
+    height: 4vh;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.submit hr {
+    width: 100%;
+    border: 1px solid lightgrey;
+}
+
+.submit svg{
+    display: flex;
+    justify-self: center;
+    align-self: center;
+    background-color: #874ffb;
+    border-radius: 50%;
+    padding: 1rem;
+    height: 4vh;
+    width: 4.5vh;
 }
