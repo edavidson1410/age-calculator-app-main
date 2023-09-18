@@ -47,13 +47,20 @@ body {
     border: 1px solid lightgrey;
 }
 
-.submit svg{
+.submit button{
     display: flex;
     justify-self: center;
     align-self: center;
+    border: 0;
+    border-radius: 50%;
+    padding: 0;
+    background-size: cover;
+}
+
+button svg {
     background-color: #874ffb;
     border-radius: 50%;
-    padding: 1rem;
+    padding: 0.75rem;
     height: 4vh;
     width: 4.5vh;
 }
