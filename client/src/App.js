@@ -5,7 +5,6 @@ import { useState } from 'react';
 
 function App() {
 
-
   const [state, setState] = useState({
     year: 0,
     month: 0,
@@ -14,7 +13,6 @@ function App() {
 
   const update = (event) => {
     const target = event.currentTarget;
-    console.log(target)
     setState({
       ...state,
       [target.name]: parseInt(target.value)
@@ -22,7 +20,7 @@ function App() {
   }
 
   const handleClick = () => {
-    console.log(0);
+
   }
 
   return (
