@@ -27,6 +27,7 @@ body {
 
 .top {
     display: flex;
+    flex-direction: column;
 }
 
 .bottom {
