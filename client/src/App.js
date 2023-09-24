@@ -5,6 +5,8 @@ import { useState } from 'react';
 
 function App() {
 
+  let today = new Date();
+
   const[validated, setValidated] = useState(false);
 
   const [state, setState] = useState({
@@ -14,7 +16,6 @@ function App() {
   });
 
   const update = (event) => {
-    console.log(1)
     const target = event.currentTarget;
     setState({
       ...state,
@@ -23,19 +24,29 @@ function App() {
     setValidated(false);
   }
 
+  function isNotValidDate(year, month, day) {
+    let d = new Date(`${year}-${month}-${day}`);
+    //Date overflows into next month with extra days. If it overflows, getMonth+1(Date months start at 0) will not equal month that is input.
+    if ( d.getMonth()+1 != state.month ) {
+        return true;
+    }
+    return false;
+}
+
   const handleSubmit = () => {
     if(state.year == 0 || state.month == 0 || state.day ==0) {
       console.log(1)
-    } else if(state.day < 1 || state.day > 31) {
+    } else if(state.day < 1 || state.day > 32) {
       console.log(2);
     } else if(state.month < 1 || state.month > 12) {
-      console.log(3)
-    } else if(state.year) {
-      
+      console.log(3);
+    } else if(state.year > today.getFullYear()) {
+      console.log(4);
+    } else if(isNotValidDate(state.year, state.month, state.day)) {
+      console.log("notValid");
+    } else {
+      setValidated(true);
     }
-
-
-    setValidated(true);
   }
 
   return (
@@ -51,7 +62,7 @@ function App() {
           </button>
         </div>
         <div className="bottom">
-          <Age year={state.year} month={state.month} day={state.day} validated={validated}/> 
+          <Age year={state.year} month={state.month} day={state.day} validated={validated} today={today}/> 
         </div>
       </div>
     </div>
