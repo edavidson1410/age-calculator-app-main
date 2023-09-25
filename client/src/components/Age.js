@@ -10,19 +10,19 @@ const Age = (props) => {
         <>
             <div className="age">
                 <div className="ageNum">
-                    {props.year != 0 && props.validated == true ? thisYear - props.year : "--"}
+                    {props.year != undefined && props.validation == true ? thisYear - props.year : "--"}
                 </div>
                 years
             </div>
             <div className="age">
                 <div className="ageNum">
-                    {props.month != 0 && props.validated == true ? thisMonth - props.month : "--"}   
+                    {props.month != undefined && props.validation == true ? Math.abs(thisMonth - props.month) : "--"}   
                 </div>
                 months
             </div>
             <div className="age">
                 <div className="ageNum">
-                    {props.day != 0 && props.validated == true ? Math.abs(thisDate - props.day) : "--"}
+                    {props.day != undefined && props.validation == true ? Math.abs(thisDate - props.day) : "--"}
                 </div>
                 days
             </div>

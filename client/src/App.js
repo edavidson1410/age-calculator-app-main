@@ -1,29 +1,37 @@
 import DateInput from "./components/DateInput";
 import Age from "./components/Age";
 import "./App.css"
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 function App() {
 
   let today = new Date();
 
-  const[validated, setValidated] = useState(false);
-
-  const [state, setState] = useState({
-    year: 0,
-    month: 0,
-    day: 0
+  //take out  
+  const[validation, setValidation] = useState({
+    year: "",
+    month: "",
+    day: "",
+    validation: false
   });
 
+  const [state, setState] = useState({
+    year: undefined,
+    month: undefined,
+    day: undefined
+  });
+
+  // setState as user inputs values
   const update = (event) => {
     const target = event.currentTarget;
     setState({
       ...state,
       [target.name]: parseInt(target.value)
     })
-    setValidated(false);
+    setValidation(false);
   }
-
+  
+  //function to determine if Date input exists
   function isNotValidDate(year, month, day) {
     let d = new Date(`${year}-${month}-${day}`);
     //Date overflows into next month with extra days. If it overflows, getMonth+1(Date months start at 0) will not equal month that is input.
@@ -33,27 +41,64 @@ function App() {
     return false;
 }
 
-  const handleSubmit = () => {
-    if(state.year == 0 || state.month == 0 || state.day ==0) {
-      console.log(1)
-    } else if(state.day < 1 || state.day > 32) {
-      console.log(2);
-    } else if(state.month < 1 || state.month > 12) {
-      console.log(3);
-    } else if(state.year > today.getFullYear()) {
-      console.log(4);
-    } else if(isNotValidDate(state.year, state.month, state.day)) {
-      console.log("notValid");
-    } else {
-      setValidated(true);
-    }
+//set date in the handle functions, turn validation into one function
+const handleDay = () => {
+  if(state.day === undefined) {
+    return "This field is required";
+  } else if(state.day < 1 || state.day > 32) {
+      return "Must be a valid day";
+  } else return "";
+}
+const handleMonth = () => {
+  if(state.month === undefined) {
+    return "This field is required"
+  } else if(state.month < 1 || state.month > 12) {
+      return "Must be a valid month";
+  } else return "";
+}
+const handleYear = () => {
+  if(state.year === undefined) {
+    return "This field is required";
+  } else if(state.year > today.getFullYear()) {
+    return "Must be in the past";
+  } else return "";
+}
+const handleValidDate = () => {
+
+}
+
+const handleValidation = () => {
+  if(validation.year === "" || validation.month === "" || validation.day === ""){
+    if(isNotValidDate(state.year, state.month, state.day)) {
+      setValidation({...validation,
+        day: "must be a valid date"
+      })
+  } else {
+    setValidation({
+      year : "",
+      month: "",
+      day: "",
+      validation: true
+    })
   }
+}
+}
+
+  //validates input before allowing age to calculate
+const handleSubmit = () => {
+    setValidation({
+      year: handleYear(),
+      month: handleMonth(),
+      day: handleDay()
+    })
+    handleValidation();
+}
 
   return (
     <div className="App">
       <div className="container">
         <div className="top">
-          <DateInput update={update}/>
+          <DateInput update={update} validation={validation}/>
         </div>
         <div className="submit">
           <hr></hr>
@@ -62,11 +107,82 @@ function App() {
           </button>
         </div>
         <div className="bottom">
-          <Age year={state.year} month={state.month} day={state.day} validated={validated} today={today}/> 
+          <Age year={state.year} month={state.month} day={state.day} validation={validation} today={today}/> 
         </div>
       </div>
+      <p>{validation.day}</p>
     </div>
   );
 }
 
 export default App;
+
+
+// function App() {
+//   let today = new Date();
+
+//   const [validation, setValidation] = useState({ // state of validation
+//     year: '',
+//     month: '',
+//     day: '',
+//     valid: false,
+//   });
+//   const [year, setYear] = useState(undefined); // value of input
+//   const [month, setMonth] = useState(undefined); // value of input
+//   const [day, setDay] = useState(undefined); // value of input
+
+
+//   const onSubmit = () => {
+//     const validationStrings = {
+//         year: validateYear(),
+//         day: handleDay(),
+//         month: handleMonth(),
+//     }; 
+
+//     if (validationStrings.year === undefined && validationStrings.day === undefined && validationStrings.month === undefined) { // they are all valid
+//         setValidation({...validationStrings, valid: true});
+//     } else { // one of them is not valid - show errors and turn valid into false
+//         setValidation({...validationStrings, valid: false});
+//     }
+//   }
+
+//   const validateYear = () => {
+//     if (year === '') {
+//         return 'must not be empty'
+//     } else if (year > today.getFullYear()) {
+//         return 'not a valid year'
+//     } else {
+//         return undefined;
+//     }
+//   }
+
+//   const validateDay = () => {
+//     if (validation.day === '') {
+//         return 'must not be empty'
+//     } else if (validation.day > 31 || isNotValidDate(year, month, day)) {
+//         return 'must be a valid date'
+//     } else {
+//         return undefined
+//     }
+//   }
+
+//   const validateMonth = () => {
+//     if (validation.month === '') {
+//         return 'must not be empty'
+//     } else if (validation.month > 12) {
+//         return 'not valid'
+//     } else {
+//         return undefined
+//     }
+//   }
+
+//   const isNotValidDate = (year, month, day) => {
+//     let d = new Date(${year}-${month}-${day});
+//     // Date overflows into next month with extra days. If it overflows, getMonth+1(Date months start at 0) will not equal month that is input.
+//     if ( d.getMonth()+1 != month ) {
+//         return true;
+//     }
+//     return false;
+// }
+
+// }
