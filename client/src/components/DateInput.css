@@ -25,3 +25,16 @@ label {
 form {
     display: flex;
 }
+
+.errorText {
+    color: red;
+}
+
+.errorBorder {
+    border-color: red;
+}
+
+p {
+    font-size: 0.5rem;
+    margin: 0;
+}
