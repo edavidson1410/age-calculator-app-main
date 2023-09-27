@@ -20,7 +20,7 @@ const DateInput = (props) => {
                 </div>
                 <div className={props.validation.year ? "inputDate errorText" : "inputDate"}>
                     <label htmlFor="year" className={props.validation.year ? "errorText" : ""}>YEAR</label>
-                    <input className={props.validation.year ? "errorBorder" : ""} type="text" id="year" placeholder="YY" name="day" onChange={props.updateYear}></input>
+                    <input className={props.validation.year ? "errorBorder" : ""} type="text" id="year" placeholder="YYYY" name="day" onChange={props.updateYear}></input>
                     {(props.validation.year != "")
                     ? <p>{props.validation.year}</p> : <p></p>}
                 </div>
